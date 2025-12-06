@@ -330,6 +330,82 @@ a:hover {
   gap: 0.6rem;
 }
 
+.subscription-panel {
+  margin-top: 1.25rem;
+}
+
+.subscription-layout {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.subscription-list {
+  flex: 0.6;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.subscription-table-wrapper {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.subscription-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subscription-table th,
+.subscription-table td {
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  text-align: left;
+}
+
+.subscription-table tbody tr {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.subscription-table tbody tr:hover {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.subscription-table tbody tr.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-left: 3px solid var(--accent);
+}
+
+.subscription-detail {
+  flex: 0.4;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 180px;
+  overflow-y: auto;
+  background: rgba(5, 8, 18, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.preview-list code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 .logs-panel {
   margin-top: 1.25rem;
 }
