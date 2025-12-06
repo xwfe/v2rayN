@@ -1,0 +1,9 @@
+{
+  "name": "v2rayn-utools-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "uTools 插件形态的 v2rayN，使用 Electron 渲染层对接 .NET Core 主逻辑。",
+  "scripts": {
+    "host": "dotnet run --project ../v2rayN/v2rayN.UtoolsHost/v2rayN.UtoolsHost.csproj -- --port=47721"
+  }
+}

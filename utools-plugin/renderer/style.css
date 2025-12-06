@@ -1,0 +1,319 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --bg: #0f172a;
+  --panel: #111827;
+  --border: #1f2937;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-strong: #0ea5e9;
+  --danger: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 45%), var(--bg);
+  color: var(--text);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand img {
+  width: 54px;
+  height: 54px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.brand p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+button.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border: none;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+button.ghost {
+  border-color: rgba(148, 163, 184, 0.4);
+  color: var(--muted);
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+.config-panel {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(17, 24, 39, 0.7);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 180px;
+}
+
+.field.flex {
+  flex: 1;
+}
+
+label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+input[type='number'],
+input[type='text'] {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text);
+  width: 100%;
+}
+
+#connectionBadge {
+  margin-left: auto;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--muted);
+}
+
+#connectionBadge.online {
+  background: rgba(14, 165, 233, 0.2);
+  color: var(--accent);
+}
+
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.card {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.6);
+  border-radius: 1.2rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.6);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.card-header strong {
+  letter-spacing: 0.05em;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-actions input {
+  max-width: 180px;
+}
+
+.status-content {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.status-badge.online {
+  background: rgba(14, 165, 233, 0.15);
+  color: var(--accent);
+}
+
+.status-badge.offline {
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--danger);
+}
+
+.profile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.profile-item {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.profile-item.active {
+  border-color: var(--accent);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.profile-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.log-view {
+  margin: 0;
+  max-height: 420px;
+  overflow-y: auto;
+  background: rgba(2, 6, 23, 0.6);
+  border-radius: 0.8rem;
+  padding: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.log-line {
+  margin: 0;
+  padding: 0.15rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.6);
+}
+
+.log-line:last-child {
+  border-bottom: none;
+}
+
+.log-line .tag {
+  margin-right: 0.5rem;
+  color: var(--muted);
+}
+
+.log-line .level-info {
+  color: var(--accent);
+}
+
+.log-line .level-error {
+  color: var(--danger);
+}
+
+.empty {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: var(--muted);
+}
+
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  min-width: 200px;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--border);
+  color: var(--text);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+.toast.error {
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+.toast.success {
+  border-color: rgba(16, 185, 129, 0.6);
+}
+
+@media (max-width: 900px) {
+  .app-header,
+  .config-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions,
+  .config-panel {
+    width: 100%;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+  }
+}

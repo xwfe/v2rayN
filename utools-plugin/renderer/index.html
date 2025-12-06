@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>v2rayN 控制台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <img src="../assets/logo.svg" alt="v2rayN" />
+        <div>
+          <h1>v2rayN 控制台</h1>
+          <p>uTools 插件 · Electron 前端</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="startHostBtn" class="primary">启动宿主</button>
+        <button id="stopHostBtn" class="ghost">停止宿主</button>
+        <button id="reloadCoreBtn">重载内核</button>
+      </div>
+    </header>
+
+    <section class="config-panel">
+      <div class="field">
+        <label for="portInput">宿主端口</label>
+        <input type="number" id="portInput" min="1024" max="65535" />
+      </div>
+      <div class="field flex">
+        <label for="pathInput">宿主可执行文件</label>
+        <input type="text" id="pathInput" placeholder="v2rayN.UtoolsHost 路径" />
+      </div>
+      <button id="saveConfigBtn" class="ghost">保存配置</button>
+      <div id="connectionBadge" class="badge">已断开</div>
+    </section>
+
+    <main class="grid">
+      <section class="card status-card">
+        <div class="card-header">
+          <strong>运行状态</strong>
+          <button id="refreshStatusBtn" class="ghost">刷新</button>
+        </div>
+        <div id="statusContent" class="status-content">
+          <p class="muted">正在初始化…</p>
+        </div>
+      </section>
+
+      <section class="card profiles-card">
+        <div class="card-header">
+          <strong>节点列表</strong>
+          <div class="card-actions">
+            <input id="profileFilter" type="text" placeholder="搜索节点" />
+            <button id="refreshProfilesBtn" class="ghost">刷新</button>
+          </div>
+        </div>
+        <div id="profilesEmpty" class="empty">暂无数据或宿主未启动。</div>
+        <ul id="profileList" class="profile-list"></ul>
+      </section>
+
+      <section class="card logs-card">
+        <div class="card-header">
+          <strong>日志</strong>
+          <button id="clearLogsBtn" class="ghost">清空</button>
+        </div>
+        <pre id="logView" class="log-view">等待日志…</pre>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
