@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "cores": [
+    {
+      "id": "xray-core",
+      "name": "Xray Core",
+      "category": "Xray",
+      "description": "支持 VMess/VLESS/Trojan 等多协议，参考 v2rayN Wiki 的 Xray core 章节。",
+      "doc": "https://github.com/2dust/v2rayN/wiki/Xray-core",
+      "binaries": {
+        "win32": "cores/xray/xray.exe",
+        "linux": "cores/xray/xray",
+        "darwin": "cores/xray/xray"
+      },
+      "args": ["run", "-c", "configs/xray.client.json"],
+      "cwd": "cores/xray",
+      "configHint": "将 v2rayN 生成的 Xray 配置复制到 configs/xray.client.json",
+      "autoStart": false
+    },
+    {
+      "id": "sing-box",
+      "name": "sing-box",
+      "category": "sing-box",
+      "description": "面向多平台的新一代内核，支持 Hysteria2/TUIC/Wireguard。",
+      "doc": "https://github.com/2dust/v2rayN/wiki/sing-box",
+      "binaries": {
+        "win32": "cores/sing-box/sing-box.exe",
+        "linux": "cores/sing-box/sing-box",
+        "darwin": "cores/sing-box/sing-box"
+      },
+      "args": ["run", "-c", "configs/sing-box.json"],
+      "cwd": "cores/sing-box",
+      "configHint": "可直接引用 v2rayN 生成的 sing-box 客户端配置",
+      "autoStart": false
+    },
+    {
+      "id": "clash-meta",
+      "name": "Clash.Meta",
+      "category": "Clash",
+      "description": "Clash.Meta 兼容 Clash Premium，可配合 v2rayN 的 Clash 配置模板使用。",
+      "doc": "https://github.com/2dust/v2rayN/wiki/Clash",
+      "binaries": {
+        "win32": "cores/clash-meta/clash.meta.exe",
+        "linux": "cores/clash-meta/clash.meta",
+        "darwin": "cores/clash-meta/clash.meta"
+      },
+      "args": ["-f", "configs/clash-meta.yaml"],
+      "cwd": "cores/clash-meta",
+      "configHint": "配置路径与原版 Clash Meta 保持一致",
+      "autoStart": false
+    },
+    {
+      "id": "hysteria2",
+      "name": "Hysteria2",
+      "category": "Hysteria2",
+      "description": "基于 QUIC 的高性能核心，适合 UDP/游戏场景。",
+      "doc": "https://github.com/2dust/v2rayN/wiki/Hysteria2",
+      "binaries": {
+        "win32": "cores/hysteria/hysteria.exe",
+        "linux": "cores/hysteria/hysteria",
+        "darwin": "cores/hysteria/hysteria"
+      },
+      "args": ["client", "-c", "configs/hysteria.json"],
+      "cwd": "cores/hysteria",
+      "configHint": "请使用 hysteria 客户端配置",
+      "autoStart": false
+    },
+    {
+      "id": "tuic-core",
+      "name": "TUIC",
+      "category": "TUIC",
+      "description": "QUIC + TLS 的 TUIC 内核实现，可通过节点导出 TUIC 配置。",
+      "doc": "https://github.com/2dust/v2rayN/wiki/TUIC",
+      "binaries": {
+        "win32": "cores/tuic/tuic.exe",
+        "linux": "cores/tuic/tuic",
+        "darwin": "cores/tuic/tuic"
+      },
+      "args": ["client", "-c", "configs/tuic.json"],
+      "cwd": "cores/tuic",
+      "configHint": "建议与 sing-box 配置目录共享证书",
+      "autoStart": false
+    }
+  ]
+}

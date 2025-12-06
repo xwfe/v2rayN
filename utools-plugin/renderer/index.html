@@ -2,8 +2,8 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <title>v2rayN 控制台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>v2rayN 多核心调度</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -11,59 +11,48 @@
       <div class="brand">
         <img src="../assets/logo.svg" alt="v2rayN" />
         <div>
-          <h1>v2rayN 控制台</h1>
-          <p>uTools 插件 · Electron 前端</p>
+          <h1>v2rayN 多核心调度</h1>
+          <p>Node.js 调度器 + Electron 渲染 · uTools 插件</p>
         </div>
       </div>
       <div class="header-actions">
-        <button id="startHostBtn" class="primary">启动宿主</button>
-        <button id="stopHostBtn" class="ghost">停止宿主</button>
-        <button id="reloadCoreBtn">重载内核</button>
+        <a class="link" href="https://github.com/2dust/v2rayN/wiki" target="_blank" rel="noreferrer">
+          官方 Wiki
+        </a>
+        <button id="startAllBtn" class="primary">启动全部核心</button>
+        <button id="stopAllBtn" class="ghost">停止全部</button>
+        <button id="refreshBtn">刷新状态</button>
       </div>
     </header>
 
-    <section class="config-panel">
-      <div class="field">
-        <label for="portInput">宿主端口</label>
-        <input type="number" id="portInput" min="1024" max="65535" />
-      </div>
-      <div class="field flex">
-        <label for="pathInput">宿主可执行文件</label>
-        <input type="text" id="pathInput" placeholder="v2rayN.UtoolsHost 路径" />
-      </div>
-      <button id="saveConfigBtn" class="ghost">保存配置</button>
-      <div id="connectionBadge" class="badge">已断开</div>
+    <section class="info-banner">
+      <p>
+        将 v2rayN 生成的 Xray / sing-box / Clash / Hysteria 等配置放入 <code>cores</code> 目录，
+        并在下方为每个核心设置可执行文件和参数，即可复现 Wiki 中的多核心方案。
+      </p>
     </section>
 
-    <main class="grid">
-      <section class="card status-card">
+    <main class="layout">
+      <section class="card core-panel">
         <div class="card-header">
-          <strong>运行状态</strong>
-          <button id="refreshStatusBtn" class="ghost">刷新</button>
+          <strong>核心列表</strong>
+          <span id="coreCounter" class="muted"></span>
         </div>
-        <div id="statusContent" class="status-content">
-          <p class="muted">正在初始化…</p>
+        <div id="coreList" class="core-list">
+          <p class="muted">正在加载核心配置…</p>
         </div>
       </section>
 
-      <section class="card profiles-card">
+      <section class="card log-panel">
         <div class="card-header">
-          <strong>节点列表</strong>
+          <strong>日志控制台</strong>
           <div class="card-actions">
-            <input id="profileFilter" type="text" placeholder="搜索节点" />
-            <button id="refreshProfilesBtn" class="ghost">刷新</button>
+            <select id="logScope"></select>
+            <button id="refreshLogsBtn" class="ghost">刷新</button>
+            <button id="clearLogsBtn" class="ghost">清空</button>
           </div>
         </div>
-        <div id="profilesEmpty" class="empty">暂无数据或宿主未启动。</div>
-        <ul id="profileList" class="profile-list"></ul>
-      </section>
-
-      <section class="card logs-card">
-        <div class="card-header">
-          <strong>日志</strong>
-          <button id="clearLogsBtn" class="ghost">清空</button>
-        </div>
-        <pre id="logView" class="log-view">等待日志…</pre>
+        <pre id="logView" class="log-view">等待日志...</pre>
       </section>
     </main>
 
