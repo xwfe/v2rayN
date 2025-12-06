@@ -7,57 +7,9 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <header class="app-header">
-      <div class="brand">
-        <img src="../assets/logo.svg" alt="v2rayN" />
-        <div>
-          <h1>v2rayN 多核心调度</h1>
-          <p>Node.js 调度器 + Electron 渲染 · uTools 插件</p>
-        </div>
-      </div>
-      <div class="header-actions">
-        <a class="link" href="https://github.com/2dust/v2rayN/wiki" target="_blank" rel="noreferrer">
-          官方 Wiki
-        </a>
-        <button id="startAllBtn" class="primary">启动全部核心</button>
-        <button id="stopAllBtn" class="ghost">停止全部</button>
-        <button id="refreshBtn">刷新状态</button>
-      </div>
-    </header>
-
-    <section class="info-banner">
-      <p>
-        将 v2rayN 生成的 Xray / sing-box / Clash / Hysteria 等配置放入 <code>cores</code> 目录，
-        并在下方为每个核心设置可执行文件和参数，即可复现 Wiki 中的多核心方案。
-      </p>
-    </section>
-
-    <main class="layout">
-      <section class="card core-panel">
-        <div class="card-header">
-          <strong>核心列表</strong>
-          <span id="coreCounter" class="muted"></span>
-        </div>
-        <div id="coreList" class="core-list">
-          <p class="muted">正在加载核心配置…</p>
-        </div>
-      </section>
-
-      <section class="card log-panel">
-        <div class="card-header">
-          <strong>日志控制台</strong>
-          <div class="card-actions">
-            <select id="logScope"></select>
-            <button id="refreshLogsBtn" class="ghost">刷新</button>
-            <button id="clearLogsBtn" class="ghost">清空</button>
-          </div>
-        </div>
-        <pre id="logView" class="log-view">等待日志...</pre>
-      </section>
-    </main>
-
-    <div id="toast" class="toast" role="status"></div>
-
+    <noscript>该插件需要浏览器启用 JavaScript</noscript>
+    <div id="app"></div>
+    <script src="./vendor/vue.global.prod.js"></script>
     <script type="module" src="./app.js"></script>
   </body>
 </html>
