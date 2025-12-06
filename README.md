@@ -13,6 +13,18 @@ and [others](https://github.com/2dust/v2rayN/wiki/List-of-supported-cores)
 
 Read the [Wiki](https://github.com/2dust/v2rayN/wiki) for details.
 
+## Electron (experimental)
+
+A proof-of-concept Electron shell lives under [`electron/`](./electron). It reuses the same `guiNConfig.json` + `guiNDB.db` files as the desktop builds.
+
+```bash
+cd electron
+npm install
+npm run dev
+```
+
+Set the `V2RAYN_DATA_DIR` environment variable or use the **Change Data Folder** action inside the app to point the UI at an existing profile store. See the [Electron README](./electron/README.md) for more details.
+
 ## Telegram Channel
 
 [github_2dust](https://t.me/github_2dust)

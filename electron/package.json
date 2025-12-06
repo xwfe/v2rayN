@@ -1,0 +1,23 @@
+{
+  "name": "v2rayn-electron",
+  "version": "0.1.0",
+  "description": "Experimental Electron shell for v2rayN's ServiceLib core.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electronmon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/2dust/v2rayN.git"
+  },
+  "author": "v2rayN contributors",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "sql.js": "^1.9.0"
+  },
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electronmon": "^2.0.4"
+  }
+}
