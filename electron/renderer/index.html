@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>v2rayN Electron (Experimental)</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #0f1116;
+        color: #f3f4f6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .actions button {
+        margin-left: 0.5rem;
+      }
+
+      main {
+        flex: 1;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .panel {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .panel label {
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .panel span {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #f9fafb;
+      }
+
+      .table-wrapper {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      th, td {
+        padding: 0.65rem 0.75rem;
+        text-align: left;
+        font-size: 0.85rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      tbody tr:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      tbody tr.default-row {
+        background: rgba(79, 70, 229, 0.15);
+      }
+
+      button {
+        background: #4f46e5;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 0.45rem 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      #empty-state {
+        padding: 2rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      footer {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      #toast {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: rgba(15, 118, 110, 0.95);
+        color: #fff;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        pointer-events: none;
+      }
+
+      #toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>v2rayN Electron · Experimental UI</h1>
+      <div class="actions">
+        <button class="secondary" id="select-dir">Change Data Folder</button>
+        <button id="refresh">Refresh</button>
+      </div>
+    </header>
+    <main>
+      <section class="panel" id="status-panel">
+        <div>
+          <label>Data directory</label>
+          <span id="data-dir">–</span>
+        </div>
+        <div>
+          <label>Default server</label>
+          <span id="default-server">–</span>
+        </div>
+        <div>
+          <label>Total profiles</label>
+          <span id="profile-count">0</span>
+        </div>
+        <div>
+          <label>Database</label>
+          <span id="db-path">–</span>
+        </div>
+      </section>
+      <section class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Remarks</th>
+              <th>Type</th>
+              <th>Core</th>
+              <th>Endpoint</th>
+              <th>Subscription</th>
+              <th>Network</th>
+              <th>Security</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="profiles-body">
+            <tr>
+              <td colspan="8">Loading…</td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="empty-state" class="hidden">
+          No profiles were found. Point the Electron shell to an existing v2rayN data folder or sync a subscription from the classic client.
+        </div>
+      </section>
+    </main>
+    <footer>
+      The Electron build reuses ServiceLib artifacts (config + SQLite) from the classic v2rayN client. Set <code>V2RAYN_DATA_DIR</code> or use the “Change Data Folder” action to point to an existing setup.
+    </footer>
+    <div id="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
