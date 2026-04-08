@@ -1,0 +1,29 @@
+{
+  "pluginName": "v2rayN 控制台",
+  "name": "v2rayn.utools",
+  "version": "0.1.0",
+  "description": "在 uTools 中以 Node.js 调度器管理 v2rayN 多核心，直接通过 Electron 界面控制 Xray/sing-box/Clash 等核心。",
+  "author": "2dust 社区",
+  "homepage": "https://github.com/2dust/v2rayN",
+  "logo": "assets/logo.svg",
+  "preload": "preload.js",
+  "main": "renderer/dist/index.html",
+  "pluginSetting": {
+    "single": true,
+    "height": 560,
+    "width": 960
+  },
+  "features": [
+    {
+      "code": "v2rayn",
+      "explain": "管理 v2rayN 节点、日志与核心状态",
+      "cmds": [
+        "v2ray",
+        "v2rayn",
+        "代理面板"
+      ],
+      "icon": "assets/logo.svg",
+      "platform": ["win32", "darwin", "linux"]
+    }
+  ]
+}
